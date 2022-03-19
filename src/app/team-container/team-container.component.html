@@ -1,0 +1,23 @@
+<p *ngIf="heroListInContainer.length === 0">
+  You still haven't created a team. Search for heroes and add them to your team.
+</p>
+<div style="margin: 1rem">
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    Add hero
+  </button>
+</div>
+
+<div *ngIf="heroListInContainer.length > 0">
+  <mat-card
+    *ngFor="let hero of heroListInContainer"
+    style="display: flex"
+    id="hero-added-detail"
+  >
+
+    <app-power-stats [hero]="hero"></app-power-stats>
+  </mat-card>
+</div>
+<mat-card>
+      <mat-card-title>Acu</mat-card-title>
+        <div>{{combatSum}}</div>
+</mat-card>

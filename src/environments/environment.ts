@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  LOGIN_URL: 'http://challenge-react.alkemy.org/',
+  BASE_API_URL: 'https://www.superheroapi.com/api.php/5320557181308017/',
 };
 
 /*

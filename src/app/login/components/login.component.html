@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class="col-md-6 login-form-1">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <!-- Login Form -->
+    <h2>Login. Welcome to blah blah blah</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="text" id="login" name="login" placeholder="challenge@alkemy.org" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid" class="ng-invalid ng-touched">Email is required</div>
+      <input type="text" id="password"  name="login" placeholder="react" formControlName="password">
+      <div *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid" class="ng-invalid ng-touched">Password is required</div>
+      <button type="submit" value="Log In"[disabled]="!loginForm.valid">Log in</button>
+    </form>
+  </div>
+    </div>
+
+</div>

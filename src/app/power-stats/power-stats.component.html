@@ -1,0 +1,38 @@
+<div style="display: flex">
+  <div>
+    <div>
+      <img
+        [src]="hero.image.url"
+        alt="hero.name"
+        style="width: 10rem; height: 10rem; border-radius: 50%"
+      />
+    </div>
+    <div style="text-align: center">
+      {{ hero.name }}
+    </div>
+  </div>
+  <div *ngFor="let powerstat of hero.powerstats | keyvalue">
+    <div>
+      <span>{{ powerstat.key }}</span>
+      <div style="height: 3rem">
+        <meter
+          min="0"
+          max="100"
+          low="30"
+          [value]="powerstat.value === 'null' ? '0' : powerstat.value"
+          style="height: 50%; width: 10rem"
+        ></meter>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <button mat-raised-button color="primary">Details</button>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="deleteHero(hero)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

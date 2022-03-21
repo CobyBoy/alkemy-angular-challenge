@@ -8,7 +8,7 @@ interface Biography {
   publisher: string;
 }
 
-interface PowerStats {
+export interface PowerStats {
   combat: string;
   durability: string;
   intelligence: string;

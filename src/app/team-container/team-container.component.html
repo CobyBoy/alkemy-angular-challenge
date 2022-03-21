@@ -6,18 +6,16 @@
     Add hero
   </button>
 </div>
-
-<div *ngIf="heroListInContainer.length > 0">
-  <mat-card
-    *ngFor="let hero of heroListInContainer"
-    style="display: flex"
-    id="hero-added-detail"
-  >
-
-    <app-power-stats [hero]="hero"></app-power-stats>
+<div style="display: flex">
+  <div *ngIf="heroListInContainer.length > 0">
+    <mat-card *ngFor="let hero of heroListInContainer" id="hero-added-detail">
+      <app-power-stats [hero]="hero"></app-power-stats>
+    </mat-card>
+  </div>
+  <mat-card>
+    <mat-card-title>Acu</mat-card-title>
+    <div *ngFor="let powerstatKeyValue of this.powerStatsSortedFormatted">
+      {{powerstatKeyValue}}
+    </div>
   </mat-card>
 </div>
-<mat-card>
-      <mat-card-title>Acu</mat-card-title>
-        <div>{{combatSum}}</div>
-</mat-card>

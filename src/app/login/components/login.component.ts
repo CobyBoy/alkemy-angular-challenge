@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast-service.service';
 import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
@@ -11,7 +12,11 @@ import { AuthService } from '../../auth/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -24,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.toastService.showSuccess('Loggin in... Please wait...');
     this.authService.getLoginToken(this.loginForm.value).subscribe();
   }
 }

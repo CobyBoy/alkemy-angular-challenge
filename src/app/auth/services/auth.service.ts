@@ -35,7 +35,6 @@ export class AuthService {
   }
 
   private handleLogin(token: string): void {
-    this.toastService.showSuccess('Loggin in... Please wait...');
     this.saveToken(token);
     this.router.navigate(['home']);
   }

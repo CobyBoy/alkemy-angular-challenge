@@ -29,7 +29,7 @@ export interface HeroAppearance {
 export interface Hero {
   appearance: HeroAppearance;
   biography: Biography;
-  connections: string;
+  connections: { 'group-affiliation': string; relatives: string};
   id: number;
   image: { url: string };
   name: string;

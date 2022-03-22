@@ -11,6 +11,14 @@ export class ToastService {
   }
 
   onError(message: string): void {
-    this.toastr.error(message)
+    this.toastr.error(message);
+  }
+
+  warning(message: string): void {
+    this.toastr.warning(message);
+  }
+
+  info(message: string): void {
+    this.toastr.info(message);
   }
 }

@@ -1,0 +1,17 @@
+<p>details works!</p>
+<div *ngIf="heroDetails">
+  <div>
+    <img src="{{ heroDetails.image.url }}" alt="{{ heroDetails.name }}" style="width: 10rem; height: 10rem; border-radius: 50%;"/>
+  </div>
+
+  <p>{{ heroDetails.name }}</p>
+  <p>{{ heroDetails.id }}</p>
+  <p>{{ heroDetails.appearance.height }}</p>
+  <p>{{ heroDetails.appearance.weight }}</p>
+  <p>{{ heroDetails.biography["full-name"] }}</p>
+  <p>{{ heroDetails.biography.aliases }}</p>
+  <p>{{ heroDetails.appearance["eye-color"] }}</p>
+  <p>{{ heroDetails.appearance["hair-color"] }}</p>
+  <p>{{ heroDetails.work.base }}</p>
+  <p>{{ heroDetails.work.occupation }}</p>
+</div>

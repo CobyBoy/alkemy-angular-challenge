@@ -29,12 +29,12 @@ export class AddHeroComponent implements OnInit {
     {
       columnDef: 'image',
       header: 'HERO IMAGE',
-      cell: (hero: Hero) => '',
+      cell: () => '',
     },
     {
       columnDef: 'button',
       header: '',
-      cell: (hero: Hero) => '',
+      cell: () => '',
     },
   ];
   displayedColumns = this.columns.map((col) => col.columnDef);
@@ -48,7 +48,7 @@ export class AddHeroComponent implements OnInit {
   }
 
   searchHero(): void {
-    this.toastService.showSuccess('Searching...')
+    this.toastService.info('Searching...')
     this.heroService
       .getHeroByName(this.addHeroForm.value.heroName)
       .pipe(

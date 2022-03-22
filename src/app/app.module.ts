@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PowerStatsComponent } from './power-stats/power-stats.component';
 import { MatCardModule } from '@angular/material/card';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatCardModule } from '@angular/material/card';
     TeamContainerComponent,
     AddHeroComponent,
     PowerStatsComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,8 @@ import { MatCardModule } from '@angular/material/card';
       progressBar: true,
       easeTime: 200,
       positionClass: 'toast-center-center',
+      extendedTimeOut: 100,
+      closeButton: true
     }),
     MatTableModule,
     MatButtonModule,

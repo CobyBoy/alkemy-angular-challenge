@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { catchError, EMPTY, Observable, of, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Hero, HeroResponse } from '../add-hero/hero';
-import { HeroError } from '../add-hero/hero-error';
 import { ToastService } from './toast-service.service';
 
 @Injectable({
@@ -27,5 +25,11 @@ export class HeroesService {
           return EMPTY;
         })
       );
+  }
+
+  getHeroById(id: number): Observable<Hero>  {
+    return this.http.get<Hero>(`${environment.BASE_API_URL}/${id}`).pipe(
+      tap((data: Hero) => {console.log("by id", data)})
+    )
   }
 }

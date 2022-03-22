@@ -32,12 +32,14 @@
         <img
           *ngIf="column.columnDef == 'image'"
           [src]="row.image.url"
+          [alt]="row.name"
           style="width: 70px; height: 70px; border-radius: 50%"
         />
         <button
           *ngIf="column.columnDef == 'button'"
           mat-raised-button
           color="primary"
+          type="button"
           (click)="addHeroToTeam(row)"
         >
           Add hero

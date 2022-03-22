@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hero } from '../add-hero/hero';
 import { TeamContainerService } from '../team-container/services/team-container.service';
 
@@ -9,14 +10,19 @@ import { TeamContainerService } from '../team-container/services/team-container.
 })
 export class PowerStatsComponent implements OnInit {
   @Input() hero!: Hero;
-  
 
-  constructor(private teamService: TeamContainerService) {}
+  constructor(
+    private teamService: TeamContainerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
+  getHeroDetails(heroId: number) {
+    this.router.navigate([`details/${heroId}`]);
+  }
+
   deleteHero(heroToDelete: Hero): void {
-    console.log('hero to delete', heroToDelete);
-    this.teamService.deleteHero(heroToDelete)
+    this.teamService.deleteHero(heroToDelete);
   }
 }

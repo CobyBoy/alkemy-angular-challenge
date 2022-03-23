@@ -17,12 +17,7 @@ export class TeamContainerService {
 
     let badHeroesLength: number = this.filterHeroesByAlignment('bad');
     let goodHeroesLength: number = this.filterHeroesByAlignment('good');
-    this.checkIfHeroCanBeAdded(
-      isHeroAlreadyOnList,
-      badHeroesLength,
-      goodHeroesLength,
-      heroToAdd
-    );
+    this.checkIfHeroCanBeAdded(isHeroAlreadyOnList, badHeroesLength, goodHeroesLength, heroToAdd);
   }
 
   private isHeroOnList(heroToAdd: Hero): boolean {
@@ -43,23 +38,16 @@ export class TeamContainerService {
     goodHeroesLength: number,
     heroToAdd: Hero
   ) {
-    if (this._heroList.value.length === 6)
-      this.toastService.warning('Sorry. Team is full');
-    else if (isHeroAlreadyOnList)
-      this.toastService.info(
-        'Sorry, hero is already in team and cant be added'
-      );
-    else if (
+    if (this._heroList.value.length === 6) return this.toastService.warning('Sorry. Team is full');
+    if (isHeroAlreadyOnList) return this.toastService.info('Sorry, hero is already in team and cant be added');
+    if (
       (badHeroesLength === 3 && heroToAdd.biography.alignment === 'bad') ||
       (goodHeroesLength === 3 && heroToAdd.biography.alignment === 'good')
     )
-      this.toastService.info(
-        `Sorry, only 3 ${heroToAdd.biography.alignment} heroes can be added`
-      );
-    else {
+      return this.toastService.info(`Sorry, only 3 ${heroToAdd.biography.alignment} heroes can be added`);
       this._heroList.next([...this._heroList.value, heroToAdd]);
       this.toastService.showSuccess('Hero added to team');
-    }
+    
   }
 
   deleteHero(heroToDelete: Hero): void {

@@ -16,7 +16,9 @@ export class HeroesService {
       .get<HeroResponse>(`${environment.BASE_API_URL}/search/${name}`)
       .pipe(
         tap((data: HeroResponse) => {
-          if (name === '' || data.error) { throw new Error(data.error); }
+          if (name === '' || data.error) {
+            throw new Error(data.error);
+          }
         })
       )
       .pipe(
@@ -27,9 +29,7 @@ export class HeroesService {
       );
   }
 
-  getHeroById(id: number): Observable<Hero>  {
-    return this.http.get<Hero>(`${environment.BASE_API_URL}/${id}`).pipe(
-      tap((data: Hero) => {console.log("by id", data)})
-    )
+  getHeroById(heroId: number): Observable<Hero> {
+    return this.http.get<Hero>(`${environment.BASE_API_URL}/${heroId}`);
   }
 }

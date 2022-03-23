@@ -10,15 +10,22 @@ import { HeroesService } from '../services/heroes.service';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  heroDetails!: Hero
-  constructor(private route: ActivatedRoute, private heroService: HeroesService ) {}
+  heroDetails!: Hero;
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroesService
+  ) {}
 
   ngOnInit(): void {
-    let idRoute = this.route.snapshot.paramMap.get('id')
-    console.log('route', idRoute);
-    if (idRoute !== null) this.heroService.getHeroById(~~idRoute).pipe(
-      map((hero: Hero) => {this.heroDetails = hero})
-    ).subscribe();
-    
+    let routeId = this.route.snapshot.paramMap.get('id');
+    if (routeId !== null)
+      this.heroService
+        .getHeroById(~~routeId)
+        .pipe(
+          map((hero: Hero) => {
+            this.heroDetails = hero;
+          })
+        )
+        .subscribe();
   }
 }

@@ -29,7 +29,7 @@ export class TeamContainerComponent implements OnInit {
       this.heroListInContainer = [...heroes];
       console.log('received hero subscribe ngoinit', heroes);
       console.log('oninit onsubscribe list', this.heroListInContainer);
-      this.calculatePowerStats();
+      if(this.heroListInContainer.length !== 0) this.calculatePowerStats();
     });
   }
 
@@ -83,6 +83,5 @@ export class TeamContainerComponent implements OnInit {
         return entry.join().replace(',', ': ');
       }
     );
-    console.log(powerStatsSorted);
   }
 }

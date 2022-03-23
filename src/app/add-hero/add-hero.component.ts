@@ -12,8 +12,8 @@ import { Hero, HeroResponse } from './hero';
   styleUrls: ['./add-hero.component.scss'],
 })
 export class AddHeroComponent implements OnInit {
-  addHeroForm!: FormGroup;
-  heroesFoundList: Hero[] = [];
+  addHeroToTeamPopUpForm!: FormGroup;
+  heroesFoundInSearch: Hero[] = [];
 
   columns = [
     {
@@ -39,25 +39,28 @@ export class AddHeroComponent implements OnInit {
   ];
   displayedColumns = this.columns.map((col) => col.columnDef);
 
-  constructor(private heroService: HeroesService, private teamService: TeamContainerService, private toastService: ToastService) {}
+  constructor(
+    private heroService: HeroesService,
+    private teamService: TeamContainerService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.addHeroForm = new FormGroup({
+    this.addHeroToTeamPopUpForm = new FormGroup({
       heroName: new FormControl('', Validators.minLength(2)),
     });
   }
 
-  searchHero(): void {
-    this.toastService.info('Searching...')
+  searchHeroByName(): void {
+    this.toastService.info('Searching...');
     this.heroService
-      .getHeroByName(this.addHeroForm.value.heroName)
+      .getHeroByName(this.addHeroToTeamPopUpForm.value.heroName)
       .pipe(
-        tap((data: HeroResponse) => console.log('data', data)),
         map((data: HeroResponse) => {
-          this.heroesFoundList = data.results;
+          this.heroesFoundInSearch = data.results;
         })
       )
-      .subscribe(() => console.log("heroesfounlist on search", this.heroesFoundList));
+      .subscribe();
   }
 
   addHeroToTeam(heroToAdd: Hero): void {

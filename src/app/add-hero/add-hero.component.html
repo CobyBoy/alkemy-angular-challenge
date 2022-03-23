@@ -1,4 +1,4 @@
-<form [formGroup]="addHeroForm" (ngSubmit)="searchHero()">
+<form [formGroup]="addHeroToTeamPopUpForm" (ngSubmit)="searchHeroByName()">
   <mat-form-field>
     <input
       type="text"
@@ -14,10 +14,10 @@
     Find hero
   </button>
 </form>
-<ng-container *ngIf="heroesFoundList.length > 0">
+<ng-container *ngIf="heroesFoundInSearch.length > 0">
   <table
     mat-table
-    [dataSource]="heroesFoundList"
+    [dataSource]="heroesFoundInSearch"
     class="mat-elevation-z8 hero-table"
   >
     <ng-container
@@ -33,6 +33,7 @@
           *ngIf="column.columnDef == 'image'"
           [src]="row.image.url"
           [alt]="row.name"
+          onerror="src='../../assets/images/imagenotfound.jpg'"
           style="width: 70px; height: 70px; border-radius: 50%"
         />
         <button

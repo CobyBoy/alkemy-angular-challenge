@@ -18,11 +18,11 @@ export class PowerStatsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getHeroDetails(heroId: number) {
+  getHeroDetails(heroId: number): void {
     this.router.navigate([`details/${heroId}`]);
   }
 
-  deleteHero(heroToDelete: Hero): void {
+  deleteHeroFromTeam(heroToDelete: Hero): void {
     this.teamService.deleteHero(heroToDelete);
   }
 }

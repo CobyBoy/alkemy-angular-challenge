@@ -13,18 +13,10 @@ export class TeamContainerService {
   constructor(private toastService: ToastService) {}
 
   addHero(heroToAdd: Hero): void {
-    const isHeroAlreadyOnList = this._heroList.value.some(
-      (heroInList: Hero) => {
-        return heroInList.id === heroToAdd.id;
-      }
-    );
-  
-    let badHeroesLength = this._heroList.value.filter((hero: Hero) => {
-      return hero.biography.alignment === 'bad';
-    }).length;
-    let goodHeroesLength = this._heroList.value.filter((hero: Hero) => {
-      return hero.biography.alignment === 'good';
-    }).length;
+    const isHeroAlreadyOnList: boolean = this.isHeroOnList(heroToAdd);
+
+    let badHeroesLength: number = this.filterHeroesByAlignment('bad');
+    let goodHeroesLength: number = this.filterHeroesByAlignment('good');
     this.checkIfHeroCanBeAdded(
       isHeroAlreadyOnList,
       badHeroesLength,
@@ -33,7 +25,19 @@ export class TeamContainerService {
     );
   }
 
-  checkIfHeroCanBeAdded(
+  private isHeroOnList(heroToAdd: Hero): boolean {
+    return this._heroList.value.some((heroInList: Hero) => {
+      return heroInList.id === heroToAdd.id;
+    });
+  }
+
+  private filterHeroesByAlignment(alignment: string): number {
+    return this._heroList.value.filter((hero: Hero) => {
+      return hero.biography.alignment === alignment;
+    }).length;
+  }
+
+  private checkIfHeroCanBeAdded(
     isHeroAlreadyOnList: boolean,
     badHeroesLength: number,
     goodHeroesLength: number,

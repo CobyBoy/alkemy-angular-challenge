@@ -2,20 +2,33 @@
   You still haven't created a team. Search for heroes and add them to your team.
 </p>
 <div>
-  <button type="button" mat-raised-button color="primary" (click)="openDialog()">
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    (click)="openDialog()"
+  >
     Add heroes
   </button>
 </div>
-<div style="display: flex" *ngIf="heroListInContainer.length > 0">
-  <div>
-    <mat-card *ngFor="let hero of heroListInContainer" id="hero-added-detail">
+<div
+  *ngIf="heroListInContainer.length > 0"
+  id="powertstat-acumulative-container"
+>
+  <div id="matcard-container">
+    <mat-card
+      *ngFor="let hero of heroListInContainer"
+      id="hero-added-detail"
+      style="background-color: antiquewhite"
+    >
       <app-power-stats [hero]="hero"></app-power-stats>
     </mat-card>
   </div>
-  <mat-card id="acumulative" style="height: max-content;">
+
+  <mat-card id="acumulative" style="height: max-content">
     <mat-card-title>Acu</mat-card-title>
     <div *ngFor="let powerstatKeyValue of this.powerStatsSortedFormatted">
-      {{powerstatKeyValue}}
+      {{ powerstatKeyValue }}
     </div>
   </mat-card>
 </div>

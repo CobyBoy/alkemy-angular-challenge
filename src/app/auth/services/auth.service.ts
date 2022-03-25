@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   logOut(): void {
-    this.cacheService.clearTokenFromLocalStorage();
+    this.cacheService.clearLocalStorage();
     this.router.navigate(['']);
   }
 

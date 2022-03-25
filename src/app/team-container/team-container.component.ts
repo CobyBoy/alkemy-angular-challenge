@@ -3,6 +3,7 @@ import { TeamContainerService } from './services/team-container.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddHeroComponent } from '../add-hero/add-hero.component';
 import { Hero } from '../add-hero/hero';
+import { CacheService } from '../services/cache.service';
 
 @Component({
   selector: 'app-team-container',
@@ -21,12 +22,22 @@ export class TeamContainerComponent implements OnInit {
 
   constructor(
     private teamService: TeamContainerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cacheService: CacheService
   ) {}
 
   ngOnInit(): void {
+    let heroesInLocal = this.cacheService.getHeroesFromLocalStorage();
     this.teamService.currentHero.subscribe((heroes: Hero[]) => {
       this.heroListInContainer = [...heroes];
+      if (this.heroListInContainer.length !== 0) {
+        this.cacheService.saveHeroesInLocalStorage(this.heroListInContainer);
+      }
+      
+      if(heroesInLocal.length !== 0 ) this.heroListInContainer = [...heroesInLocal]
+      //else this.heroListInContainer = [...this.heroListInContainer, ...heroes];
+
+      //this.teamService.saveListOfHeroes(this.heroListInContainer);
       console.log('received hero subscribe ngoinit', heroes);
       console.log('oninit onsubscribe list', this.heroListInContainer);
       if(this.heroListInContainer.length !== 0) this.calculatePowerStats();
@@ -47,12 +58,12 @@ export class TeamContainerComponent implements OnInit {
     this.strengthSum = 0;
     this.heroListInContainer.forEach((hero: Hero) => {
       let powerstats = hero.powerstats;
-      this.combatSum += ~~powerstats.combat;
-      this.durabilitySum += ~~powerstats.durability;
-      this.intelligenceSum += ~~powerstats.intelligence;
-      this.powerSum += ~~powerstats.power;
-      this.speedSum += ~~powerstats.speed;
-      this.strengthSum += ~~powerstats.strength;
+      this.combatSum += ~~powerstats?.combat;
+      this.durabilitySum += ~~powerstats?.durability;
+      this.intelligenceSum += ~~powerstats?.intelligence;
+      this.powerSum += ~~powerstats?.power;
+      this.speedSum += ~~powerstats?.speed;
+      this.strengthSum += ~~powerstats?.strength;
     });
     this.calculateMax();
   }

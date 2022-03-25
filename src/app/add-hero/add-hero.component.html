@@ -19,6 +19,9 @@
     mat-table
     [dataSource]="heroesFoundInSearch"
     class="mat-elevation-z8 hero-table"
+    aria-live="polite"
+    [attr.aria-label]="heroesFoundInSearch.length + 'results'"
+    tabindex="0"
   >
     <ng-container
       *ngFor="let column of columns"
@@ -27,12 +30,13 @@
       <th mat-header-cell *matHeaderCellDef>
         {{ column.header }}
       </th>
-      <td mat-cell *matCellDef="let row" id="row.id">
+      <td mat-cell *matCellDef="let row" [id]="row.id"  >
         {{ column.cell(row) }}
         <img
           *ngIf="column.columnDef == 'image'"
           [src]="row.image.url"
           [alt]="row.name"
+          decoding="async"
           onerror="src='../../assets/images/imagenotfound.jpg'"
           style="width: 70px; height: 70px; border-radius: 50%"
         />
@@ -49,7 +53,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" tabindex="0" [attr.aria-label]="row.name"></tr>
   </table>
 </ng-container>
 <div mat-dialog-actions>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Hero } from 'src/app/add-hero/hero';
+import { CacheService } from 'src/app/services/cache.service';
 import { ToastService } from 'src/app/services/toast-service.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class TeamContainerService {
   private _heroList = new BehaviorSubject<Hero[]>([]);
   currentHero = this._heroList.asObservable();
 
-  constructor(private toastService: ToastService) {}
+  constructor(private toastService: ToastService, private cacheService: CacheService) {}
 
   addHero(heroToAdd: Hero): void {
     const isHeroAlreadyOnList: boolean = this.isHeroOnList(heroToAdd);
@@ -45,8 +46,8 @@ export class TeamContainerService {
       (goodHeroesLength === 3 && heroToAdd.biography.alignment === 'good')
     )
       return this.toastService.info(`Sorry, only 3 ${heroToAdd.biography.alignment} heroes can be added`);
-      this._heroList.next([...this._heroList.value, heroToAdd]);
-      this.toastService.showSuccess('Hero added to team');
+    this._heroList.next([...this._heroList.value, heroToAdd]);
+    this.toastService.showSuccess('Hero added to team');
     
   }
 
@@ -56,6 +57,11 @@ export class TeamContainerService {
         return heroInList !== heroToDelete;
       })
     );
+    this.saveListOfHeroes(this._heroList.value);
     this.toastService.showSuccess('Hero deleted');
+  };
+
+  saveListOfHeroes(heroes: Hero[]) {
+    this.cacheService.saveHeroesInLocalStorage(heroes);
   }
 }

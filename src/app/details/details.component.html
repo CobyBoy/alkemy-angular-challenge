@@ -1,17 +1,32 @@
 <p>details works!</p>
-<div *ngIf="heroDetails">
+<div *ngIf="heroDetails" tabindex="0">
   <div>
-    <img src="{{ heroDetails.image?.url }}" [alt]="heroDetails.name" onerror="src='../../assets/images/imagenotfound.jpg'" style="width: 10rem; height: 10rem; border-radius: 50%;"/>
+    <img
+      src="{{ heroDetails.image?.url }}"
+      [alt]="heroDetails.name"
+      decoding="async"
+      onerror="src='../../assets/images/imagenotfound.jpg'"
+      style="width: 10rem; height: 10rem; border-radius: 50%"
+    />
   </div>
-
+  <h4>Name:</h4>
   <p>{{ heroDetails.name }}</p>
+  <h4>Id:</h4>
   <p>{{ heroDetails.id }}</p>
+  <h4>Height:</h4>
   <p>{{ heroDetails.appearance?.height }}</p>
+  <h4>Weight:</h4>
   <p>{{ heroDetails.appearance?.weight }}</p>
+  <h4>Full name:</h4>
   <p>{{ heroDetails.biography?.["full-name"] }}</p>
+  <h4>Aliases:</h4>
   <p>{{ heroDetails.biography?.aliases }}</p>
+  <h4>Eye color:</h4>
   <p>{{ heroDetails.appearance?.["eye-color"] }}</p>
+  <h4>Hair color:</h4>
   <p>{{ heroDetails.appearance?.["hair-color"] }}</p>
+  <h4>Base:</h4>
   <p>{{ heroDetails.work?.base }}</p>
+  <h4>Occupation:</h4>
   <p>{{ heroDetails.work?.occupation }}</p>
 </div>

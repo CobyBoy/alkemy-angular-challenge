@@ -1,34 +1,38 @@
-<p *ngIf="heroListInContainer.length === 0">
-  You still haven't created a team. Search for heroes and add them to your team.
-</p>
-<div>
-  <button
-    type="button"
-    mat-raised-button
-    color="primary"
-    (click)="openDialog()"
-  >
-    Add heroes
-  </button>
-</div>
-<div
-  *ngIf="heroListInContainer.length > 0"
-  id="powertstat-acumulative-container"
->
-  <div id="matcard-container">
-    <mat-card
-      *ngFor="let hero of heroListInContainer"
-      id="hero-added-detail"
-      style="background-color: antiquewhite"
+<main tabindex="0">
+  <p *ngIf="heroListInContainer.length === 0">
+    You still haven't created a team. Search for heroes and add them to your
+    team.
+  </p>
+  <div>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="openDialog()"
     >
-      <app-power-stats [hero]="hero"></app-power-stats>
+      Add heroes
+    </button>
+  </div>
+  <div
+    *ngIf="heroListInContainer.length > 0"
+    id="powertstat-acumulative-container"
+  >
+    <div id="matcard-container">
+      <mat-card
+        *ngFor="let hero of heroListInContainer"
+        id="hero-added-detail"
+        tabindex="0"
+        style="background-color: antiquewhite"
+      >
+        <app-power-stats [hero]="hero"></app-power-stats>
+      </mat-card>
+    </div>
+
+    <mat-card id="acumulative" style="height: max-content" tabindex="0">
+      <mat-card-title>Acumulative</mat-card-title>
+      <div *ngFor="let powerstatKeyValue of this.powerStatsSortedFormatted">
+        {{ powerstatKeyValue }}
+      </div>
     </mat-card>
   </div>
-
-  <mat-card id="acumulative" style="height: max-content">
-    <mat-card-title>Acu</mat-card-title>
-    <div *ngFor="let powerstatKeyValue of this.powerStatsSortedFormatted">
-      {{ powerstatKeyValue }}
-    </div>
-  </mat-card>
-</div>
+</main>

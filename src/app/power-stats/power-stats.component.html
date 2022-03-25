@@ -1,9 +1,10 @@
 <div [id]="hero.name + hero.id" style="width: -webkit-fill-available">
   <div style="width: 50%">
     <img
-      [src]="hero.image.url"
+      [src]="hero.image?.url"
       [alt]="hero.name"
       onerror="src='../../assets/images/imagenotfound.jpg'"
+      decoding="async"
       class="img-fluid"
     />
   </div>

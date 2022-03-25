@@ -4,19 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/components/login.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './notfound/page-not-found.component';
-import { AuthService } from './auth/services/auth.service';
-import { CacheService } from './services/cache.service';
-import { ToastService } from './services/toast-service.service';
-import { AuthGuard } from './auth/auth.guard';
 import { TeamContainerComponent } from './team-container/team-container.component';
-import { TeamContainerService } from './team-container/services/team-container.service';
 import { AddHeroComponent } from './add-hero/add-hero.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
@@ -37,7 +31,7 @@ import { DetailsComponent } from './details/details.component';
     TeamContainerComponent,
     AddHeroComponent,
     PowerStatsComponent,
-    DetailsComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,13 +54,7 @@ import { DetailsComponent } from './details/details.component';
     MatFormFieldModule,
     MatCardModule,
   ],
-  providers: [
-    AuthService,
-    CacheService,
-    ToastService,
-    TeamContainerService,
-    AuthGuard,
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
